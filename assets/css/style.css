@@ -7,3 +7,11 @@
 #choices {
     cursor: pointer;
 }
+
+#result {
+    color:blue;
+}
+
+#final {
+    color: red;
+}
