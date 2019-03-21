@@ -142,14 +142,7 @@ function timerOff(){
     clearInterval(intervalId)
 }
 
-function correctAnswer() {
-    console.log("right answer")
-    $("#result").text("Correct!")
-    score++
-    currentQ++
-    remaining--
-    
-
+function final(){
     if (remaining <= 0) {
         $("#result").text("Finished!")
         timerOff()
@@ -158,12 +151,24 @@ function correctAnswer() {
         $("#rights").html(score)
         $("#wrongs").html(incorrect)
         $("#score").toggle()
+        $("#question").toggle()
 
     }   
 
     else {
         start()
     }
+}
+
+function correctAnswer() {
+    console.log("right answer")
+    $("#result").text("Correct!")
+    score++
+    currentQ++
+    remaining--
+    
+    final();
+
 }
 
 function wrongAnswer(){
@@ -172,26 +177,14 @@ function wrongAnswer(){
     currentQ++
     remaining--
     
-
-    if (remaining <= 0) {
-        $("#result").text("Finished!")
-        timerOff()
-        $("#choices").toggle()
-        $("#timer").toggle()
-        $("#rights").html(score)
-        $("#wrongs").html(incorrect)
-        $("#score").toggle()
-    }   
-
-    else {
-        start()
-    }
+    final();
 }
 
 $("#start-btn").on("click", function(){
     start()
     $("#start-btn").toggle()
 })
+
 
 $("#answer_1").on("click", function(){
 
