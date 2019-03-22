@@ -2,6 +2,19 @@
     cursor: pointer;
 }
 
+#answer_1, #answer_2, #answer_3, #answer_4{
+    color:darkslategray;
+}
+
+#answer_1:hover, #answer_2:hover, #answer_3:hover, #answer_4:hover {
+    color:black;
+}
+
+#answer_1:active, #answer_2:active, #answer_3:active, #answer_4:active {
+    color:blue;
+}
+
+
 #result {
     color:blue;
 }

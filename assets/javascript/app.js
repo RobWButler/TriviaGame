@@ -6,107 +6,107 @@ var intervalId;
 var currentQ = 0;
 var score = 0;
 var remaining = 10;
-var incorrect = (10 - score);
+var incorrect = "";
 
 
 var list = {
     0: {
         question: "Who's buried in Grant's tomb",
-        choice1: "Tomby McTombface",
-        choice2: "Lee",
-        choice3: "Grant",
-        choice4: "It actually symbolizes all Grants",
-        correct: "Grant",
+        choice1: "A) Tomby McTombface",
+        choice2: "B) Lee",
+        choice3: "C) Grant",
+        choice4: "D) It actually symbolizes all Grants",
+        correct: "C) Grant",
     
     },
     1: {
 
         question: "Who's buried in Lee's tomb",
-        choice1: "Bomby McBombface",
-        choice2: "Grant",
-        choice3: "Lee",
-        choice4: "It actually symbolizes all Lees",
-        correct: "Lee",
+        choice1: "A) Bomby McBombface",
+        choice2: "B) Grant",
+        choice3: "C) Lee",
+        choice4: "D) It actually symbolizes all Lees",
+        correct: "C) Lee",
     
     },
     2: {
 
         question: "Who's buried in Bomby's tomb",
-        choice1: "Bomby McBombface",
-        choice2: "Grant",
-        choice3: "Lee",
-        choice4: "It actually symbolizes all Lees",
-        correct: "Bomby McBombface",
+        choice1: "A) Bomby McBombface",
+        choice2: "B) Grant",
+        choice3: "C) Lee",
+        choice4: "D) It actually symbolizes all Lees",
+        correct: "A) Bomby McBombface",
     
     },
     3: {
 
         question: "Who's buried in Bee's tomb",
-        choice1: "Gomby McLombface",
-        choice2: "Brant",
-        choice3: "Gee",
-        choice4: "It actually symbolizes all Bees",
-        correct: "It actually symbolizes all Bees",
+        choice1: "A) Gomby McLombface",
+        choice2: "B) Brant",
+        choice3: "C) Gee",
+        choice4: "D) It actually symbolizes all Bees",
+        correct: "D) It actually symbolizes all Bees",
     
     },
     4: {
 
         question: "Who's buried in Zee's tomb",
-        choice1: "Gomby McGombface",
-        choice2: "Zrant",
-        choice3: "Zee",
-        choice4: "It actually symbolizes all Zees",
-        correct: "Zee",
+        choice1: "A) Gomby McGombface",
+        choice2: "B) Zrant",
+        choice3: "C) Zee",
+        choice4: "D) It actually symbolizes all Zees",
+        correct: "C) Zee",
     
     },
     5: {
 
         question: "Who's buried in Frampt's tomb",
-        choice1: "Fromby McFrombface",
-        choice2: "Frampt",
-        choice3: "Freee",
-        choice4: "It actually symbolizes all Frampts",
-        correct: "Frampt",
+        choice1: "A) Fromby McFrombface",
+        choice2: "B) Frampt",
+        choice3: "C) Free",
+        choice4: "D) It actually symbolizes all Frampts",
+        correct: "B) Frampt",
     
     },
     6: {
 
         question: "Who's buried in Pant's tomb",
-        choice1: "Pomby McPombface",
-        choice2: "Pant",
-        choice3: "Pee",
-        choice4: "It actually symbolizes all Pants",
-        correct: "Pant",
+        choice1: "A) Pomby McPombface",
+        choice2: "B) Pant",
+        choice3: "C) Pee",
+        choice4: "D) It actually symbolizes all Pants",
+        correct: "B) Pant",
     
     },
     7: {
 
         question: "Who's buried in Jee's tomb",
-        choice1: "Jomby McJombface",
-        choice2: "Jrant",
-        choice3: "Jee",
-        choice4: "It actually symbolizes all Jees",
-        correct: "Jomby McJombface",
+        choice1: "A) Jomby McJombface",
+        choice2: "B) Jrant",
+        choice3: "C) Jee",
+        choice4: "D) It actually symbolizes all Jees",
+        correct: "A) Jomby McJombface",
     
     },
     8: {
 
         question: "Who's buried in Yee's tomb",
-        choice1: "Yomby McYombface",
-        choice2: "Yrant",
-        choice3: "Yee",
-        choice4: "It actually symbolizes all Yees",
-        correct: "Yee",
+        choice1: "A) Yomby McYombface",
+        choice2: "B) Yrant",
+        choice3: "C) Yee",
+        choice4: "D) It actually symbolizes all Yees",
+        correct: "C) Yee",
     
     },
     9: {
 
         question: "Who's buried in Vrant's tomb",
-        choice1: "Vomby McVombface",
-        choice2: "Vrant",
-        choice3: "Vee",
-        choice4: "It actually symbolizes all Vrants",
-        correct: "Vrant",
+        choice1: "A) Vomby McVombface",
+        choice2: "B) Vrant",
+        choice3: "C) Vee",
+        choice4: "D) It actually symbolizes all Vrants",
+        correct: "B) Vrant",
     
     },
 }
@@ -142,10 +142,18 @@ function timerOff(){
     clearInterval(intervalId)
 }
 
+function nextQ() {
+    $("#choices").toggle()
+    $("#question").toggle()
+    final();
+
+}
+
 function final(){
     if (remaining <= 0) {
         $("#result").text("Finished!")
         timerOff()
+        incorrect = (10 - score)
         $("#choices").toggle()
         $("#timer").toggle()
         $("#rights").html(score)
@@ -156,6 +164,8 @@ function final(){
     }   
 
     else {
+        $("#result").empty()
+        $("#correct_answer").empty()
         start()
     }
 }
@@ -163,21 +173,26 @@ function final(){
 function correctAnswer() {
     console.log("right answer")
     $("#result").text("Correct!")
-    score++
     currentQ++
+    $("#choices").toggle()
+    $("#question").toggle()
+    score++
     remaining--
-    
-    final();
+    setTimeout(nextQ, 3000)
+
 
 }
 
 function wrongAnswer(){
     console.log("wrong answer")
     $("#result").text("BZZT!")
+    $("#correct_answer").text("Correct answer was: " + list[currentQ].correct)
     currentQ++
+    $("#choices").toggle()
+    $("#question").toggle()
     remaining--
-    
-    final();
+    setTimeout(nextQ, 3000)
+
 }
 
 $("#start-btn").on("click", function(){
@@ -187,6 +202,7 @@ $("#start-btn").on("click", function(){
 
 
 $("#answer_1").on("click", function(){
+    clearInterval(intervalId)
 
     if ((list[currentQ].choice1) == list[currentQ].correct) {
         correctAnswer()
@@ -200,6 +216,7 @@ $("#answer_1").on("click", function(){
 })
 
 $("#answer_2").on("click", function(){
+    clearInterval(intervalId)
 
     if ((list[currentQ].choice2) == list[currentQ].correct) {
         correctAnswer()
@@ -211,7 +228,8 @@ $("#answer_2").on("click", function(){
 })
 
 $("#answer_3").on("click", function(){
-    
+    clearInterval(intervalId)
+
     if ((list[currentQ].choice3) == list[currentQ].correct) {
         correctAnswer()
     }
@@ -222,6 +240,7 @@ $("#answer_3").on("click", function(){
 })
 
 $("#answer_4").on("click", function(){
+    clearInterval(intervalId)
 
     if ((list[currentQ].choice4) == list[currentQ].correct) {
         correctAnswer()
