@@ -1,24 +1,47 @@
 #choices {
     cursor: pointer;
+    
 }
 
 #answer_1, #answer_2, #answer_3, #answer_4{
-    color:darkslategray;
+    color:rgb(58, 97, 97);
+    padding:5px;
 }
 
 #answer_1:hover, #answer_2:hover, #answer_3:hover, #answer_4:hover {
     color:black;
+    text-shadow: .5pt .5pt 10pt darkslategray;
 }
 
 #answer_1:active, #answer_2:active, #answer_3:active, #answer_4:active {
     color:blue;
+    text-shadow: .5pt .5pt 3pt darkblue;
+
 }
 
 
 #result {
     color:blue;
+    font-weight:bolder;
 }
 
 #final {
     color: red;
+}
+
+.btn-primary {
+    font-size:200%
+}
+
+#timer {
+    margin: auto;
+    margin-bottom:15px;
+    margin-top:15px;
+    background-color:tan;
+    font-family: monospace;
+    font-size: 42pt;
+    width: 100px;
+    text-shadow: .5pt .5pt .5pt darkslategray;
+    border-radius:5px;
+    box-shadow: inset .5pt .5pt 2pt darkslategray
 }

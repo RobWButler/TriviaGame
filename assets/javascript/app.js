@@ -156,7 +156,7 @@ function final(){
         incorrect = (10 - score)
         $("#choices").toggle()
         $("#timer").toggle()
-        $("#rights").html(score)
+        $("#rights").html(score + " out of 10")
         $("#wrongs").html(incorrect)
         $("#score").toggle()
         $("#question").toggle()
@@ -178,7 +178,7 @@ function correctAnswer() {
     $("#question").toggle()
     score++
     remaining--
-    setTimeout(nextQ, 3000)
+    setTimeout(nextQ, 2500)
 
 
 }
