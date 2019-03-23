@@ -91,9 +91,9 @@ var list = {
     },
     8: {
 
-        question: "These ancient humans coexisted alongside our ancestors, and were named for the region in France they were found.",
+        question: "These ancient humans coexisted alongside our ancestors, and were named for the region in Germany they were discovered.",
         choice1: "A) Cro Magnons",
-        choice2: "B) Parisians",
+        choice2: "B) Dusseldorfites",
         choice3: "C) Neanderthals",
         choice4: "D) Morlocks",
         correct: "C) Neanderthals",
